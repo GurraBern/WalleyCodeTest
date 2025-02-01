@@ -1,0 +1,15 @@
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\bin\Debug\net8.0\Toll.exe
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\bin\Debug\net8.0\Toll.deps.json
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\bin\Debug\net8.0\Toll.runtimeconfig.json
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\bin\Debug\net8.0\Toll.dll
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\bin\Debug\net8.0\Toll.pdb
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.AssemblyInfoInputs.cache
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.AssemblyInfo.cs
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.csproj.CoreCompileInputs.cache
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.sourcelink.json
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.dll
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\refint\Toll.dll
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.pdb
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.genruntimeconfig.cache
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\ref\Toll.dll
