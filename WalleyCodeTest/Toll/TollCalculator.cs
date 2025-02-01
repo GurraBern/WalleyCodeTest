@@ -25,19 +25,21 @@ public class TollCalculator
         VehicleType.Military
     ];
 
-    //TODO fails if date has no entries
-    
+    //TODO better to use IEnumerable maybe
     public int GetTollFee(IVehicle vehicle, DateTime[] dates)
     {
+        if (dates.Length == 0)
+            return 0;
+        
         var intervalStart = dates[0];
         var totalFee = 0;
-        foreach (DateTime date in dates)
+        foreach (var date in dates)
         {
             var nextFee = GetTollFee(date, vehicle);
             var tempFee = GetTollFee(intervalStart, vehicle);
 
             long diffInMillies = date.Millisecond - intervalStart.Millisecond;
-            long minutes = diffInMillies/1000/60;
+            var minutes = diffInMillies/1000/60;
 
             if (minutes <= 60)
             {

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Toll")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e92b609e42e79518bd69a701cc554308c0465d9c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e1245031f56d20390c3367793765c55c857d596")]
 [assembly: System.Reflection.AssemblyProductAttribute("Toll")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Toll")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
