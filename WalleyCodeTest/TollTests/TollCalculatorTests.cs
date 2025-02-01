@@ -56,11 +56,42 @@ public class TollCalculatorTests
         Assert.Equal(0, result);
     }
     
-    //TODO max 60 kr per fordon
+    [Fact]
+    public void GetTollFee_max_price_for_date_Should_be_60()
+    {
+        // Arrange
+        var car = new Car();
+        var sut = new TollCalculator();
+        
+        var dates = GetTollDates();
+
+        // Act
+        var result = sut.GetTollFee(car, dates);
+
+        //Assert
+        Assert.Equal(60, result);
+    }
     
-    
-    
-    
+    private static List<DateTime> GetTollDates()
+    {
+        var baseDate = DateTime.Parse("2013-02-01"); // Start with the base date
+        var dates = new List<DateTime>
+        {
+            baseDate.AddHours(6).AddMinutes(0),  // 06:00
+            baseDate.AddHours(6).AddMinutes(30), // 06:30
+            baseDate.AddHours(7).AddMinutes(0),  // 07:00
+            baseDate.AddHours(8).AddMinutes(0),  // 08:00
+            baseDate.AddHours(8).AddMinutes(30), // 08:30
+            baseDate.AddHours(15).AddMinutes(0), // 15:00
+            baseDate.AddHours(15).AddMinutes(30),// 15:30
+            baseDate.AddHours(17).AddMinutes(0), // 17:00
+            baseDate.AddHours(18).AddMinutes(0), // 18:00
+            baseDate.AddHours(18).AddMinutes(30) // 18:30
+        };
+
+        return dates;
+    }
+
     //TODO gör theory med alla enums?
     //TODO Skattas inte på lördag
     [Fact]
@@ -81,6 +112,4 @@ public class TollCalculatorTests
     
     //TODO!!!!!
     // , helgdagar, dagar före helgdag, eller juli månad
-    
-    
 }

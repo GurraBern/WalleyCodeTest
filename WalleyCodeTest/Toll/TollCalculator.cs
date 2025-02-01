@@ -25,41 +25,47 @@ public class TollCalculator
         VehicleType.Military
     ];
 
-    //TODO better to use IEnumerable maybe
-    public int GetTollFee(IVehicle vehicle, DateTime[] dates)
+    private const int MaxTotalFee = 60;
+
+    //Get rid of multi enumeration
+    public int GetTollFee(IVehicle vehicle, IEnumerable<DateTime> dates)
     {
-        if (dates.Length == 0)
+        var dateTimes = dates.ToList();
+        
+        if (dateTimes.Count == 0)
             return 0;
         
-        var intervalStart = dates[0];
         var totalFee = 0;
-        foreach (var date in dates)
+        foreach (var date in dateTimes)
         {
-            var nextFee = GetTollFee(date, vehicle);
-            var tempFee = GetTollFee(intervalStart, vehicle);
-
-            long diffInMillies = date.Millisecond - intervalStart.Millisecond;
-            var minutes = diffInMillies/1000/60;
-
-            if (minutes <= 60)
-            {
-                if (totalFee > 0) 
-                    totalFee -= tempFee;
-                
-                if (nextFee >= tempFee) 
-                    tempFee = nextFee;
-                
-                totalFee += tempFee;
-            }
-            else
-            {
-                totalFee += nextFee;
-            }
+            totalFee += GetTollFee(date, vehicle);
         }
-        if (totalFee > 60) 
-            totalFee = 60;
-        
-        return totalFee;
+
+
+        //     var nextFee = GetTollFee(date, vehicle);
+        //     var tempFee = GetTollFee(intervalStart, vehicle);
+        //
+        //     long diffInMillies = date.Millisecond - intervalStart.Millisecond;
+        //     var minutes = diffInMillies/1000/60;
+        //
+        //     if (minutes <= 60)
+        //     {
+        //         if (totalFee > 0) 
+        //             totalFee -= tempFee;
+        //         
+        //         if (nextFee >= tempFee) 
+        //             tempFee = nextFee;
+        //         
+        //         totalFee += tempFee;
+        //     }
+        //     else
+        //     {
+        //         totalFee += nextFee;
+        //     }
+        // }
+        return totalFee > MaxTotalFee
+            ? MaxTotalFee
+            : totalFee;
     }
 
     private static bool IsTollFreeVehicle(IVehicle? vehicle)
@@ -96,6 +102,7 @@ public class TollCalculator
     //TODO hitta ett bättre att få ut helgdagar? Libraries?
     private static bool IsTollFreeDate(DateTime date)
     {
+        //TODO ska det skattas på söndag?
         if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday) 
             return true;
 
