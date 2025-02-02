@@ -73,11 +73,11 @@ public class TollFeeProvider : ITollFeeProvider
 
     private static bool IsInJuly(DateTime date) => date.Month == 7;
 
-    private readonly struct TimeRange(TimeSpan startTime, TimeSpan endTime, int price)
+    private record TimeRange(TimeSpan StartTime, TimeSpan EndTime, int Price)
     {
-        public TimeSpan StartTime { get; } = startTime;
-        public TimeSpan EndTime { get; } = endTime;
-        public int Price { get; } = price;
+        public TimeSpan StartTime { get; } = StartTime;
+        public TimeSpan EndTime { get; } = EndTime;
+        public int Price { get; } = Price;
     }
 }
 
