@@ -104,3 +104,4 @@ C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\TollTests\obj\Debug\n
 C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\TollTests\obj\Debug\net8.0\TollTests.pdb
 C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\TollTests\obj\Debug\net8.0\TollTests.genruntimeconfig.cache
 C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\TollTests\obj\Debug\net8.0\ref\TollTests.dll
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\TollTests\bin\Debug\net8.0\PublicHoliday.dll

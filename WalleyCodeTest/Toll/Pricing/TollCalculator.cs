@@ -33,40 +33,34 @@ public class TollCalculator
         if (timeStamps.Count == 0)
             return 0;
 
-        var intervalStart = timeStamps.First();
-
-        var currentIntervalTimestamps = new List<DateTime>();
-        
-        //Jag vill att om det har passerat mer 60 minuter måste man betala nästa stop igen, men det är bug när man åker under timme 
         var totalFee = 0;
+        var currentIntervalTimestamps = new List<DateTime>();
+        var intervalStart = timeStamps.First();
+        
         foreach (var timestamp in timeStamps)
         {
-            var minutesPassed = (timestamp - intervalStart).TotalMinutes;
-            if (minutesPassed >= 60)
-            {
-                currentIntervalTimestamps.Add(timestamp);
-                intervalStart = timestamp;
-                
-                totalFee += GetHighestTollFee(vehicle, currentIntervalTimestamps );
-                
-                currentIntervalTimestamps.Clear();
-            }
-            
             currentIntervalTimestamps.Add(timestamp);
+            
+            var minutesPassed = (timestamp - intervalStart).TotalMinutes;
+            if ((minutesPassed >= 60) is false)
+                continue;
+
+            totalFee += GetHighestTollFee(vehicle, currentIntervalTimestamps);
+                
+            currentIntervalTimestamps.Clear();
+            intervalStart = timestamp;
         }
         
-        if(currentIntervalTimestamps .Count > 0)
-            totalFee += GetHighestTollFee(vehicle, currentIntervalTimestamps );
-
-        return totalFee > MaxTotalFee
-            ? MaxTotalFee
-            : totalFee;
+        if(currentIntervalTimestamps.Count > 0)
+            totalFee += GetHighestTollFee(vehicle, currentIntervalTimestamps);
+        
+        return Math.Min(totalFee, MaxTotalFee);
     }
     
     private int GetHighestTollFee(IVehicle vehicle, List<DateTime> timestamps)
     {
         var tollFees = timestamps
-            .Select(date => _tollFeeProvider.GetTollFee(date, vehicle))
+            .Select(date => _tollFeeProvider.GetTollFee(vehicle, date))
             .ToList();
 
         return tollFees.Max();

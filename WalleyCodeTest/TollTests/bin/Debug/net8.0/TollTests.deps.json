@@ -9,6 +9,7 @@
       "TollTests/1.0.0": {
         "dependencies": {
           "Microsoft.NET.Test.Sdk": "17.8.0",
+          "PublicHoliday": "3.2.0",
           "Toll": "1.0.0",
           "coverlet.collector": "6.0.0",
           "xunit": "2.5.3",
@@ -350,6 +351,14 @@
           "lib/netstandard2.0/NuGet.Frameworks.dll": {
             "assemblyVersion": "6.5.0.154",
             "fileVersion": "6.5.0.154"
+          }
+        }
+      },
+      "PublicHoliday/3.2.0": {
+        "runtime": {
+          "lib/net6.0/PublicHoliday.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.0"
           }
         }
       },
@@ -1022,6 +1031,9 @@
       },
       "xunit.runner.visualstudio/2.5.3": {},
       "Toll/1.0.0": {
+        "dependencies": {
+          "PublicHoliday": "3.2.0"
+        },
         "runtime": {
           "Toll.dll": {
             "assemblyVersion": "1.0.0",
@@ -1113,6 +1125,13 @@
       "sha512": "sha512-QWINE2x3MbTODsWT1Gh71GaGb5icBz4chS8VYvTgsBnsi8esgN6wtHhydd7fvToWECYGq7T4cgBBDiKD/363fg==",
       "path": "nuget.frameworks/6.5.0",
       "hashPath": "nuget.frameworks.6.5.0.nupkg.sha512"
+    },
+    "PublicHoliday/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SoaAmVGyCZSt+EYtfa74wQipSSSxkdsgG+DO0tr4cJe2/2dtaWYW2KlYTAb/3DjY0ThFHOjB1YObrdnkKYkt8A==",
+      "path": "publicholiday/3.2.0",
+      "hashPath": "publicholiday.3.2.0.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

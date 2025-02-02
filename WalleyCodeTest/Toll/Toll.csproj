@@ -12,4 +12,8 @@
       <Folder Include="obj\Debug\net8.0\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="PublicHoliday" Version="3.2.0" />
+    </ItemGroup>
+
 </Project>

@@ -13,3 +13,6 @@ C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0
 C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.pdb
 C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.genruntimeconfig.cache
 C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\ref\Toll.dll
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.csproj.AssemblyReference.cache
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\obj\Debug\net8.0\Toll.csproj.Up2Date
+C:\Users\Gustav\source\repos\WalleyCodeTest\WalleyCodeTest\Toll\bin\Debug\net8.0\PublicHoliday.dll

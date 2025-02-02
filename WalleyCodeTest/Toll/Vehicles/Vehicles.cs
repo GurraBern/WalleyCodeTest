@@ -13,7 +13,7 @@ public enum VehicleType
 
 public class Motorbike : IVehicle
 {
-    public VehicleType VehicleType { get; } = VehicleType.Motorbike;
+    public VehicleType VehicleType => VehicleType.Motorbike;
     public bool IsTollFree() => true;
 }
 
@@ -41,18 +41,18 @@ public class Car : IVehicle
 
 public class Tractor : IVehicle
 {
-    public VehicleType VehicleType { get; } = VehicleType.Tractor;
+    public VehicleType VehicleType => VehicleType.Tractor;
     public bool IsTollFree() => true;
 }
 
 public class Ambulance : IVehicle
 {
-    public VehicleType VehicleType { get; } = VehicleType.Emergency;
+    public VehicleType VehicleType => VehicleType.Emergency;
     public bool IsTollFree() => true;
 }
 
 public class Tank : IVehicle
 {
-    public VehicleType VehicleType { get; } = VehicleType.Military;
+    public VehicleType VehicleType => VehicleType.Military;
     public bool IsTollFree() => true;
 }

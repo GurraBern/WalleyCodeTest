@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[17.8.0, )"
             },
+            "PublicHoliday": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[6.0.0, )"
@@ -138,6 +142,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "PublicHoliday": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
