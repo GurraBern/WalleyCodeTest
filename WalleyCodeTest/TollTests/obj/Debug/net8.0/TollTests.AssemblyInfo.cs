@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TollTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+403d7b836a94e5e33effed7d05605385e66ec834")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a26602e6fd5b438352ccab4b5149363fbfde144c")]
 [assembly: System.Reflection.AssemblyProductAttribute("TollTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TollTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

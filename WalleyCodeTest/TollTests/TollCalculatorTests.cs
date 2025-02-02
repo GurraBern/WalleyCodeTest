@@ -1,4 +1,5 @@
 using WalleyCodeTest;
+using WalleyCodeTest.Pricing;
 using WalleyCodeTest.Vehicles;
 
 namespace TollTests;
@@ -27,6 +28,14 @@ public class TollCalculatorTests
     [InlineData("2013-02-01 18:29", 8)]
     [InlineData("2013-02-01 18:30", 0)]
     [InlineData("2013-02-01 05:59", 0)]
+    [InlineData("2013-02-01 09:00", 8)]
+    [InlineData("2013-02-01 10:00", 8)]
+    [InlineData("2013-02-01 11:00", 8)]
+    [InlineData("2013-02-01 12:00", 8)]
+    [InlineData("2013-02-01 13:00", 8)]
+    [InlineData("2013-02-01 14:00", 8)]
+    [InlineData("2013-02-01 16:00", 18)]
+    [InlineData("2013-02-01 19:00", 0)]
     public void GetTollFee_ShouldReturnCorrectAmount(string date, int expectedAmount)
     {
         // Arrange
@@ -63,7 +72,7 @@ public class TollCalculatorTests
         var car = new Car();
         var sut = new TollCalculator();
         
-        var dates = GetTollDates();
+        var dates = GetTollTimestamps();
 
         // Act
         var result = sut.GetTollFee(car, dates);
@@ -72,21 +81,66 @@ public class TollCalculatorTests
         Assert.Equal(60, result);
     }
     
-    private static List<DateTime> GetTollDates()
+    //Baserat på uppgiften att det står "En bil passerar flera betalstationer" så gör jag antagandet 
+    // att fordon paserar flera betalstationer(alltså att även motorcyckel t.ex följer samma logik)
+    [Fact]
+    public void GetTollFee_car_passing_multiple_toll_stations_Should_just_pay_once_per_60_minutes()
     {
-        var baseDate = DateTime.Parse("2013-02-01"); // Start with the base date
+        // Arrange
+        var baseDate = DateTime.Parse("2013-02-01");
+        const int highestTollFee = 21;
+        
         var dates = new List<DateTime>
         {
-            baseDate.AddHours(6).AddMinutes(0),  // 06:00
-            baseDate.AddHours(6).AddMinutes(30), // 06:30
-            baseDate.AddHours(7).AddMinutes(0),  // 07:00
-            baseDate.AddHours(8).AddMinutes(0),  // 08:00
-            baseDate.AddHours(8).AddMinutes(30), // 08:30
-            baseDate.AddHours(15).AddMinutes(0), // 15:00
-            baseDate.AddHours(15).AddMinutes(30),// 15:30
-            baseDate.AddHours(17).AddMinutes(0), // 17:00
-            baseDate.AddHours(18).AddMinutes(0), // 18:00
-            baseDate.AddHours(18).AddMinutes(30) // 18:30
+            baseDate.AddHours(6).AddMinutes(0),
+            baseDate.AddHours(6).AddMinutes(21),
+            baseDate.AddHours(6).AddMinutes(30),
+        };
+        
+        var car = new Car();
+        var sut = new TollCalculator();
+
+        // Act
+        var result = sut.GetTollFee(car, dates);
+
+        //Assert
+        Assert.Equal(highestTollFee, result);
+    }
+
+    [Theory]
+    [InlineData(VehicleType.Motorbike)]
+    public void GetTollFee_Given_toll_free_vehicle_should_return_0_fee(VehicleType vehicleType)
+    {
+        // Arrange
+        var timeStamps = GetTollTimestamps();
+        var sut = new TollCalculator();
+        var vehicle = VehicleFactory.Create(vehicleType);
+
+        // Act
+        var actualFee = sut.GetTollFee(vehicle, timeStamps);
+
+        // Assert
+
+        Assert.Equal(0, actualFee);
+    }
+    
+    
+    private static List<DateTime> GetTollTimestamps()
+    {
+        var baseDate = DateTime.Parse("2013-02-01");
+        var dates = new List<DateTime>
+        {
+            baseDate.AddHours(6).AddMinutes(0),
+            baseDate.AddHours(6).AddMinutes(30),
+            baseDate.AddHours(7).AddMinutes(0),
+            baseDate.AddHours(8).AddMinutes(0),
+            baseDate.AddHours(9).AddMinutes(0),
+            baseDate.AddHours(10).AddMinutes(0),
+            baseDate.AddHours(11).AddMinutes(0),
+            baseDate.AddHours(12).AddMinutes(0),
+            baseDate.AddHours(13).AddMinutes(0),
+            baseDate.AddHours(14).AddMinutes(0),
+            baseDate.AddHours(15).AddMinutes(0)
         };
 
         return dates;
