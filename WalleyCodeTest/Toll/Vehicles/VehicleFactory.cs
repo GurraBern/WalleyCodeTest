@@ -1,3 +1,5 @@
+using System;
+
 namespace WalleyCodeTest.Vehicles;
 
 public static class VehicleFactory
