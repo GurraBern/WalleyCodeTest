@@ -113,6 +113,11 @@ public class TollCalculatorTests
 
     [Theory]
     [InlineData(VehicleType.Motorbike)]
+    [InlineData(VehicleType.Military)]
+    [InlineData(VehicleType.Emergency)]
+    [InlineData(VehicleType.Tractor)]
+    [InlineData(VehicleType.Diplomat)]
+    [InlineData(VehicleType.Foreign)]
     public void GetTollFee_Given_toll_free_vehicle_should_return_0_fee(VehicleType vehicleType)
     {
         // Arrange

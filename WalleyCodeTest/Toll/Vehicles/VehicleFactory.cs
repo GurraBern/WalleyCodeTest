@@ -8,12 +8,17 @@ public static class VehicleFactory
         {
             VehicleType.Motorbike => new Motorbike(),
             VehicleType.Car => new Car(),
-            // VehicleType.Tractor => expr,
-            // VehicleType.Emergency => expr,
-            // VehicleType.Diplomat => expr,
-            // VehicleType.Foreign => expr,
-            // VehicleType.Military => expr,
+            VehicleType.Diplomat => new Car(vehicleType),
+            VehicleType.Foreign => new Car(vehicleType),
+            VehicleType.Tractor => new Tractor(),
+            VehicleType.Emergency => new Ambulance(),
+            VehicleType.Military => new Tank(),
             _ => throw new ArgumentException($"Unsupported vehicle type: {vehicleType}")
         };
+    }
+
+    public static IVehicle CreateCar(VehicleType vehicleType)
+    {
+        return new Car(vehicleType);
     }
 }

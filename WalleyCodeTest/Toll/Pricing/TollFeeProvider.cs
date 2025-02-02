@@ -18,24 +18,12 @@ public class TollFeeProvider : ITollFeeProvider
         new TimeRange(new TimeSpan(18, 30, 0), new TimeSpan(5, 59, 0), 0)
     };
     
-    //TODO beroendes på hur logiken ändras kanske det är bättre att fordon själv har koll på om den ska betala avgift eller ej
-    //Just nu kanske det är overkill? Åandra måste man in i den här klassen när man lägger ett nytt fordon vilket bryter mot OCP
-    private static IEnumerable<VehicleType> TollFreeVehicles =>
-    [
-        VehicleType.Motorbike,
-        VehicleType.Tractor,
-        VehicleType.Emergency,
-        VehicleType.Diplomat,
-        VehicleType.Foreign,
-        VehicleType.Military
-    ];
-    
     //Comment: Här funderade jag på om man bör returnera 0 eller throwa exception(alternativt returnera Result.Fail())
     // om pris saknas för intervallet, däremot tänker jag att man specifik specifierar när och hur mycket man ska betala men utanför det
     // är det gratis.
     public int GetTollFee(DateTime date, IVehicle vehicle)
     {
-        if (IsTollFreeDate(date) || IsTollFreeVehicle(vehicle)) 
+        if (IsTollFreeDate(date) || vehicle.IsTollFree()) 
             return 0;
         
         foreach (var price in _prices)
@@ -77,17 +65,6 @@ public class TollFeeProvider : ITollFeeProvider
                month == 11 && day == 1 ||
                month == 12 && (day == 24 || day == 25 || day == 26 || day == 31);
     }
-    
-    private static bool IsTollFreeVehicle(IVehicle? vehicle)
-    {
-        if (vehicle == null) 
-            return false;
-        
-        var isTollFree = TollFreeVehicles.Contains(vehicle.VehicleType);
-
-        return isTollFree;
-    }
-
     
     private readonly struct TimeRange(TimeSpan startTime, TimeSpan endTime, int price)
     {

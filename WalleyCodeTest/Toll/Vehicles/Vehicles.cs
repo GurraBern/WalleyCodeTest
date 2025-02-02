@@ -1,10 +1,5 @@
 namespace WalleyCodeTest.Vehicles;
 
-public static class Vehicles
-{
-    
-}
-
 public enum VehicleType
 {
     Motorbike = 0,
@@ -14,4 +9,50 @@ public enum VehicleType
     Foreign = 4,
     Military = 5,
     Car = 6
+}
+
+public class Motorbike : IVehicle
+{
+    public VehicleType VehicleType { get; } = VehicleType.Motorbike;
+    public bool IsTollFree() => true;
+}
+
+public class Car : IVehicle
+{
+    public VehicleType VehicleType { get; } = VehicleType.Car;
+    
+    public bool IsTollFree()
+    {
+        return VehicleType switch
+        {
+            VehicleType.Diplomat => true,
+            VehicleType.Foreign => true,
+            _ => false
+        };
+    }
+
+    public Car() {}
+
+    public Car(VehicleType vehicleType)
+    {
+        VehicleType = vehicleType;
+    }
+}
+
+public class Tractor : IVehicle
+{
+    public VehicleType VehicleType { get; } = VehicleType.Tractor;
+    public bool IsTollFree() => true;
+}
+
+public class Ambulance : IVehicle
+{
+    public VehicleType VehicleType { get; } = VehicleType.Emergency;
+    public bool IsTollFree() => true;
+}
+
+public class Tank : IVehicle
+{
+    public VehicleType VehicleType { get; } = VehicleType.Military;
+    public bool IsTollFree() => true;
 }
