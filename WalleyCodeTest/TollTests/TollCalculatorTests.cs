@@ -42,10 +42,11 @@ public class TollCalculatorTests
         var currentTime = DateTime.Parse(date);
 
         var car = new Car();
-        var sut = new TollCalculator();
+        var tollFeeProvider = new TollFeeProvider();
+        var sut = new TollCalculator(tollFeeProvider);
         
         // Act
-        var result = sut.GetTollFee(car, [currentTime]);
+        var result = sut.GetTotalTollFee(car, [currentTime]);
 
         //Assert
         Assert.Equal(expectedAmount, result);
@@ -56,10 +57,11 @@ public class TollCalculatorTests
     {
         // Arrange
         var car = new Car();
-        var sut = new TollCalculator();
+        var tollFeeProvider = new TollFeeProvider();
+        var sut = new TollCalculator(tollFeeProvider);
         
         // Act
-        var result = sut.GetTollFee(car, []);
+        var result = sut.GetTotalTollFee(car, []);
 
         //Assert
         Assert.Equal(0, result);
@@ -70,12 +72,13 @@ public class TollCalculatorTests
     {
         // Arrange
         var car = new Car();
-        var sut = new TollCalculator();
+        var tollFeeProvider = new TollFeeProvider();
+        var sut = new TollCalculator(tollFeeProvider);
         
         var dates = GetTollTimestamps();
 
         // Act
-        var result = sut.GetTollFee(car, dates);
+        var result = sut.GetTotalTollFee(car, dates);
 
         //Assert
         Assert.Equal(60, result);
@@ -98,10 +101,11 @@ public class TollCalculatorTests
         };
         
         var car = new Car();
-        var sut = new TollCalculator();
+        var tollFeeProvider = new TollFeeProvider();
+        var sut = new TollCalculator(tollFeeProvider);
 
         // Act
-        var result = sut.GetTollFee(car, dates);
+        var result = sut.GetTotalTollFee(car, dates);
 
         //Assert
         Assert.Equal(highestTollFee, result);
@@ -113,11 +117,12 @@ public class TollCalculatorTests
     {
         // Arrange
         var timeStamps = GetTollTimestamps();
-        var sut = new TollCalculator();
+        var tollFeeProvider = new TollFeeProvider();
+        var sut = new TollCalculator(tollFeeProvider);
         var vehicle = VehicleFactory.Create(vehicleType);
 
         // Act
-        var actualFee = sut.GetTollFee(vehicle, timeStamps);
+        var actualFee = sut.GetTotalTollFee(vehicle, timeStamps);
 
         // Assert
 
@@ -155,10 +160,11 @@ public class TollCalculatorTests
         var saturday = new DateTime(2025, 2, 1);
 
         var car = new Car();
-        var sut = new TollCalculator();
+        var tollFeeProvider = new TollFeeProvider();
+        var sut = new TollCalculator(tollFeeProvider);
 
         // Act
-        var result = sut.GetTollFee(car, [saturday]);
+        var result = sut.GetTotalTollFee(car, [saturday]);
 
         //Assert
         Assert.Equal(0, result);
