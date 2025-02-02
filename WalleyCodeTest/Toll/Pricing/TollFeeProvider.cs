@@ -9,18 +9,18 @@ public class TollFeeProvider : ITollFeeProvider
 {
     private readonly IPublicHolidays _holidays;
 
-    private readonly IEnumerable<TimeRange> _prices = new List<TimeRange>
+    private readonly IEnumerable<TollFee> _tollFees = new List<TollFee>
     {
-        new TimeRange(new TimeSpan(6, 0, 0), new TimeSpan(6, 29, 0), 8),
-        new TimeRange(new TimeSpan(6, 30, 0), new TimeSpan(6, 59, 0), 13),
-        new TimeRange(new TimeSpan(7, 0, 0), new TimeSpan(7, 59, 0), 18),
-        new TimeRange(new TimeSpan(8, 0, 0), new TimeSpan(8, 29, 0), 13),
-        new TimeRange(new TimeSpan(8, 30, 0), new TimeSpan(14, 59, 0), 8),
-        new TimeRange(new TimeSpan(15, 0, 0), new TimeSpan(15, 29, 0), 13),
-        new TimeRange(new TimeSpan(15, 30, 0), new TimeSpan(16, 59, 0), 18),
-        new TimeRange(new TimeSpan(17, 0, 0), new TimeSpan(17, 59, 0), 13),
-        new TimeRange(new TimeSpan(18, 0, 0), new TimeSpan(18, 29, 0), 8),
-        new TimeRange(new TimeSpan(18, 30, 0), new TimeSpan(5, 59, 0), 0)
+        new TollFee(new TimeSpan(6, 0, 0), new TimeSpan(6, 29, 0), 8),
+        new TollFee(new TimeSpan(6, 30, 0), new TimeSpan(6, 59, 0), 13),
+        new TollFee(new TimeSpan(7, 0, 0), new TimeSpan(7, 59, 0), 18),
+        new TollFee(new TimeSpan(8, 0, 0), new TimeSpan(8, 29, 0), 13),
+        new TollFee(new TimeSpan(8, 30, 0), new TimeSpan(14, 59, 0), 8),
+        new TollFee(new TimeSpan(15, 0, 0), new TimeSpan(15, 29, 0), 13),
+        new TollFee(new TimeSpan(15, 30, 0), new TimeSpan(16, 59, 0), 18),
+        new TollFee(new TimeSpan(17, 0, 0), new TimeSpan(17, 59, 0), 13),
+        new TollFee(new TimeSpan(18, 0, 0), new TimeSpan(18, 29, 0), 8),
+        new TollFee(new TimeSpan(18, 30, 0), new TimeSpan(5, 59, 0), 0)
     };
 
     public TollFeeProvider(IPublicHolidays holidays)
@@ -36,7 +36,7 @@ public class TollFeeProvider : ITollFeeProvider
         if (IsTollFreeDate(date) || vehicle.IsTollFree()) 
             return 0;
         
-        foreach (var price in _prices)
+        foreach (var price in _tollFees)
         {
             if (date.TimeOfDay >= price.StartTime && date.TimeOfDay <= price.EndTime)
             {
@@ -73,7 +73,7 @@ public class TollFeeProvider : ITollFeeProvider
 
     private static bool IsInJuly(DateTime date) => date.Month == 7;
 
-    private record TimeRange(TimeSpan StartTime, TimeSpan EndTime, int Price)
+    private record TollFee(TimeSpan StartTime, TimeSpan EndTime, int Price)
     {
         public TimeSpan StartTime { get; } = StartTime;
         public TimeSpan EndTime { get; } = EndTime;
